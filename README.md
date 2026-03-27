@@ -15,6 +15,9 @@ No data is sent to any server. Everything runs in the browser.
 
 ## Usage
 
+View on browser at https://economist1895.github.io/iit-estimator/
+
+Alternatively:
 1. Clone or download the repository
 2. Place `index.html`, `app.js`, and `logo.png` in the same folder
 3. Open `index.html` in any modern browser — no build step or server required

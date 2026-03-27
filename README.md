@@ -21,8 +21,4 @@ No data is sent to any server. Everything runs in the browser.
 
 ## Disclaimer
 
-This tool is for **estimation purposes only**. It is not affiliated with or endorsed by IRAS. Tax rules are based on publicly available IRAS guidelines for YA 2026. Always verify your eligibility for reliefs and confirm your actual tax payable via [MyTax Portal](https://mytax.iras.gov.sg).
-
-## License
-
-MIT
+This tool is for **estimation purposes only**. It is not endorsed by IRAS yet. Tax rules are based on publicly available IRAS guidelines for YA 2026. Always verify your eligibility for reliefs and confirm your actual tax payable.

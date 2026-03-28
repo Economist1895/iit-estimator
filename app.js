@@ -213,9 +213,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // ── Reset button ───────────────────────────────────────────────────────
     var resetModal = $('resetModal');
-    $('tab-reset').addEventListener('click', function() {
-        resetModal.style.display = 'flex';
-    });
+    var tabResetBtn = $('tab-reset');
+    if (tabResetBtn) {
+        tabResetBtn.addEventListener('click', function() {
+            resetModal.style.display = 'flex';
+        });
+    }
     $('resetCancelBtn').addEventListener('click', function() {
         resetModal.style.display = 'none';
     });

@@ -15,7 +15,7 @@
             --radius: 14px; --shadow: 0 1px 3px rgba(0,0,0,0.07), 0 8px 24px rgba(0,0,0,0.05);
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif; background: #f1f5f9; min-height: 100vh; padding: 28px 16px 100px; color: var(--text); line-height: 1.6; }
+        body { font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif; background: #f1f5f9; min-height: 100vh; padding: 28px 16px 40px; color: var(--text); line-height: 1.6; }
         .page-header { max-width: 640px; margin: 0 auto 28px; display: flex; align-items: center; gap: 16px; }
         .page-header .iras-logo { height: 64px; width: auto; flex-shrink: 0; }
         .page-header-divider { width: 1.5px; height: 44px; background: var(--border); flex-shrink: 0; }
@@ -27,7 +27,8 @@
         .tab-btn { flex: 1; padding: 10px 8px; border: none; background: transparent; border-radius: 8px; font-family: 'IBM Plex Sans', sans-serif; font-size: 0.82rem; font-weight: 600; color: var(--text-muted); cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 6px; }
         .tab-btn:hover { background: var(--surface-2); color: var(--ink); }
         .tab-btn.active { background: var(--primary); color: white; box-shadow: 0 2px 8px rgba(37,99,235,0.3); }
-        .tab-btn .tab-icon { font-size: 1rem; }
+        .tab-btn.tab-reset { flex: 0 0 auto; color: var(--text-muted); font-weight: 600; font-size: 0.82rem; padding: 10px 16px; border: 1.5px solid var(--border); border-radius: 8px; background: var(--surface); margin-left: auto; }
+        .tab-btn.tab-reset:hover { background: #fee2e2; color: #dc2626; border-color: #fca5a5; }
         .page { display: none; }
         .page.active { display: block; }
         .container { max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
@@ -168,36 +169,6 @@
         .ptr-box-amt { font-size: 1.4rem; font-weight: 700; color: #166534; }
         .ptr-box-note { font-size: 0.78rem; color: #166534; margin-top: 4px; line-height: 1.5; opacity: 0.85; }
 
-        /* ── Sticky tax preview bar ── */
-        .tax-preview-bar {
-            position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
-            background: linear-gradient(135deg, #1e2a3a 0%, #1e3a5f 100%);
-            border-top: 1px solid rgba(255,255,255,0.08);
-            box-shadow: 0 -4px 24px rgba(0,0,0,0.18);
-            padding: 10px 16px;
-            display: flex; align-items: center; justify-content: space-between; gap: 12px;
-        }
-        .tax-preview-bar .tpb-left { display: flex; flex-direction: column; gap: 1px; }
-        .tax-preview-bar .tpb-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
-        .tax-preview-bar .tpb-amount { font-size: 1.35rem; font-weight: 700; color: #93c5fd; letter-spacing: -0.5px; line-height: 1; }
-        .tax-preview-bar .tpb-amount.zero { color: rgba(255,255,255,0.3); }
-        .tax-preview-bar .tpb-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-        .tax-preview-bar .tpb-monthly { font-size: 0.75rem; color: rgba(255,255,255,0.45); white-space: nowrap; }
-        .tax-preview-bar .tpb-results-btn {
-            background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
-            color: white; border-radius: 8px; padding: 7px 14px;
-            font-family: 'IBM Plex Sans', sans-serif; font-size: 0.82rem; font-weight: 600;
-            cursor: pointer; transition: background 0.15s; white-space: nowrap;
-        }
-        .tax-preview-bar .tpb-results-btn:hover { background: rgba(255,255,255,0.2); }
-        .tax-preview-bar .tpb-reset-btn {
-            background: none; border: none; color: rgba(255,255,255,0.35);
-            font-family: 'IBM Plex Sans', sans-serif; font-size: 0.75rem; font-weight: 500;
-            cursor: pointer; padding: 4px 2px; text-decoration: underline; text-underline-offset: 2px;
-            transition: color 0.15s;
-        }
-        .tax-preview-bar .tpb-reset-btn:hover { color: rgba(255,255,255,0.7); }
-
         /* ── Tab done indicator ── */
         .tab-done-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #4ade80; margin-left: 5px; vertical-align: middle; flex-shrink: 0; }
         .tab-btn.active .tab-done-dot { background: rgba(255,255,255,0.7); }
@@ -212,11 +183,9 @@
         @media (max-width: 420px) {
             .page-header .iras-logo { height: 52px; } .page-header-divider { height: 36px; } .page-header-text h1 { font-size: 1.05rem; }
             .card { padding: 18px; } .tax-highlight .amt { font-size: 1.65rem; }
-            .tab-btn span { display: none; }
+            .tab-btn { font-size: 0.75rem; padding: 10px 6px; }
             .income-card-body { padding: 0 16px 18px; padding-top: 16px; }
             .income-card-header { padding: 16px; }
-            .tax-preview-bar .tpb-monthly { display: none; }
-            .tax-preview-bar .tpb-amount { font-size: 1.15rem; }
         }
     </style>
 </head>
@@ -232,9 +201,10 @@
 </div>
 
 <div class="tab-nav" id="tabNav">
-    <button class="tab-btn active" id="tab-income"><span class="tab-icon">&#128176;</span><span>Income</span><span class="tab-done-dot" id="dot-income" style="display:none"></span></button>
-    <button class="tab-btn" id="tab-reliefs"><span class="tab-icon">&#128737;&#65039;</span><span>Reliefs</span><span class="tab-done-dot" id="dot-reliefs" style="display:none"></span></button>
-    <button class="tab-btn" id="tab-result"><span class="tab-icon">&#128202;</span><span>Results</span></button>
+    <button class="tab-btn active" id="tab-income">Income<span class="tab-done-dot" id="dot-income" style="display:none"></span></button>
+    <button class="tab-btn" id="tab-reliefs">Reliefs<span class="tab-done-dot" id="dot-reliefs" style="display:none"></span></button>
+    <button class="tab-btn" id="tab-result">Results</button>
+    <button class="tab-btn tab-reset" id="tab-reset" title="Reset all fields">&#8635; Reset</button>
 </div>
 
 <!-- PAGE 1: INCOME -->
@@ -716,18 +686,7 @@
 
 </div></div>
 
-<!-- Sticky tax preview bar -->
-<div class="tax-preview-bar" id="taxPreviewBar">
-    <div class="tpb-left">
-        <div class="tpb-label">Estimated Tax Payable</div>
-        <div class="tpb-amount zero" id="tpbAmount">$0.00</div>
-    </div>
-    <div class="tpb-right">
-        <div class="tpb-monthly" id="tpbMonthly"></div>
-        <button class="tpb-reset-btn" id="tpbResetBtn">Reset</button>
-        <button class="tpb-results-btn" id="tpbResultsBtn">View Results &#8594;</button>
-    </div>
-</div>
+
 
 <!-- Reset confirmation modal -->
 <div id="resetModal" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.45);align-items:center;justify-content:center;padding:16px;">

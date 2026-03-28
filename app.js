@@ -118,32 +118,10 @@ document.addEventListener('DOMContentLoaded', function () {
         return { months: months, monthly: tax / months };
     }
 
-    // ── Preview bar & tab indicators ──────────────────────────────────────────
-    function updatePreviewBar() {
+    // ── Tab indicators ──────────────────────────────────────────────────────
+    function updateTabIndicators() {
         var s = incomeState;
         var r = reliefState;
-        var totalIncome = s.employ + s.rental + s.trade + s.other;
-        var chargeable  = Math.max(0, totalIncome - r.donations - r.capped);
-        var taxOnChargeable = calculateTax(chargeable);
-        var ptr    = Math.min(r.ptr, taxOnChargeable);
-        var netTax = Math.max(0, taxOnChargeable - ptr);
-
-        var amtEl     = $('tpbAmount');
-        var monthlyEl = $('tpbMonthly');
-        if (amtEl) {
-            amtEl.textContent = fmt(netTax);
-            amtEl.className = 'tpb-amount' + (netTax === 0 ? ' zero' : '');
-        }
-        if (monthlyEl) {
-            if (netTax <= 0) {
-                monthlyEl.textContent = '';
-            } else {
-                var giro = calcGiroMonths(netTax);
-                monthlyEl.textContent = giro.months <= 1
-                    ? fmt(netTax) + ' (lump sum)'
-                    : fmt(giro.monthly) + ' / mo × ' + giro.months + ' months';
-            }
-        }
 
         // Tab done dots — income tab gets dot if any income entered
         var hasIncome = (s.grossEmploy > 0 || s.rental > 0 || s.trade > 0 || s.other > 0);
@@ -163,8 +141,6 @@ document.addEventListener('DOMContentLoaded', function () {
         $('page-' + tab).classList.add('active');
         $('tab-' + tab).classList.add('active');
         if (tab === 'result') updateResults();
-        var previewBar = $('taxPreviewBar');
-        if (previewBar) previewBar.style.display = tab === 'result' ? 'none' : '';
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     $('tab-income').addEventListener('click',  function() { switchTab('income');  });
@@ -235,11 +211,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (header) header.addEventListener('click', function() { $(id).classList.toggle('open'); });
     });
 
-    // ── Preview bar buttons ───────────────────────────────────────────────────
-    $('tpbResultsBtn').addEventListener('click', function() { switchTab('result'); });
-
+    // ── Reset button ───────────────────────────────────────────────────────
     var resetModal = $('resetModal');
-    $('tpbResetBtn').addEventListener('click', function() {
+    $('tab-reset').addEventListener('click', function() {
         resetModal.style.display = 'flex';
     });
     $('resetCancelBtn').addEventListener('click', function() {
@@ -420,7 +394,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 total: simpleTotal, capped: simpleTotal,
                 donations: donationDeduct, ptr: ptrAmt, simpleMode: true, simpleRaw: simpleRaw
             };
-            updatePreviewBar();
+            updateTabIndicators();
             return;
         }
 
@@ -567,7 +541,7 @@ document.addEventListener('DOMContentLoaded', function () {
             total: total, capped: capped, donations: donationDeduct, ptr: ptrAmt,
             simpleMode: false
         };
-        updatePreviewBar();
+        updateTabIndicators();
     }
 
     // ── Results page ──────────────────────────────────────────────────────────

@@ -28,19 +28,19 @@ document.addEventListener('DOMContentLoaded', function () {
         throw new Error('calculateTax: income ' + income + ' not covered by any bracket');
     }
 
-    // ── CPF employee contribution rates 2026 ─────────────────────────────────
+    // ── CPF employee contribution rates 2025 (income year for YA 2026) ────────
     // Key: age group → employee contribution rate on OW/AW
     var cpfEmployeeRates = {
         'u55':   0.20,
-        '55to60': 0.18,
-        '60to65': 0.125,
+        '55to60': 0.17,
+        '60to65': 0.115,
         '65to70': 0.075,
         'o70':   0.05
     };
 
-    // OW ceiling (2026): $8,000/month
+    // OW ceiling (2025): $7,400/month
     // Annual salary ceiling: $102,000
-    var OW_CEILING_MONTHLY = 8000;
+    var OW_CEILING_MONTHLY = 7400;
     var ANNUAL_SALARY_CEILING = 102000;
 
     /**
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
      * CPF relief = employee contributions on OW (capped at OW ceiling) +
      *              employee contributions on AW (capped at AW ceiling)
      *
-     * OW ceiling = $8,000/month
+     * OW ceiling = $7,400/month
      * AW ceiling = $102,000 − total OW subject to CPF for the year
      *
      * Total contributions capped at Annual Limit ($37,740) as relief cap.

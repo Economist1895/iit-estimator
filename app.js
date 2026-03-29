@@ -259,6 +259,15 @@ document.addEventListener('DOMContentLoaded', function () {
         // Reset NSman disabled states
         setGroupDisabled('nsmanWifeGroup', false);
         setGroupDisabled('nsmanSelfGroup', false);
+        // Close all relief section accordions
+        document.querySelectorAll('.relief-section').forEach(function(s) {
+            s.classList.remove('open');
+        });
+        // Reset income card accordion states
+        ['employment', 'rental', 'trade', 'other'].forEach(function(key) {
+            var card = $('incomeCard-' + key);
+            if (card) card.classList.toggle('open', key === 'employment');
+        });
         // Close modal and recalculate
         resetModal.style.display = 'none';
         switchTab('income');
